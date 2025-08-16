@@ -13,9 +13,14 @@ RUN sed -i s@security.ubuntu.com@mirrors.tuna.tsinghua.edu.cn@g /etc/apt/sources
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -yq \
+    locales vim net-tools \
     git curl build-essential cmake \
     openocd gdb-multiarch libfuse2 stlink-tools libssl-dev pkg-config \
-    libudev-dev libusb-dev libusb-1.0 usbutils
+    libudev-dev libusb-dev libusb-1.0 usbutils \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && locale-gen en_US en_US.UTF-8 \
+    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 ENV CARGO_HOME=/usr/local/cargo
 ENV RUSTUP_HOME=/usr/local/rustup
@@ -49,4 +54,5 @@ RUN cargo install cargo-binutils \
 
 WORKDIR /workspace
 
-CMD [ "/bin/bash" ]
+CMD ["bash", "-c", "while true; do sleep 10; done"]
+

@@ -5,19 +5,15 @@ services:
     stdin_open: true
     tty: true
     environment:
-      - ROS_DOMAIN_ID=10 
       - DISPLAY=$DISPLAY
       - QT_X11_NO_MITSHM=1
       - XAUTHORITY=/tmp/.docker.xauth
-      - NVIDIA_DRIVER_CAPABILITIES=all
     devices:
       - /dev/video0:/dev/video0
       - /dev/dri:/dev/dri
-      - /dev/stlinkv2_4:/dev/stlinkv2_4
+      - /dev/stlinkv2_2:/dev/stlinkv2_2
       - /dev/bus/usb:/dev/bus/usb
     volumes:
-      - ./start.sh:/opt/start.sh
       - ../src:/workspace/
       - /tmp/.X11-unix:/tmp/.X11-unix
       - $HOME/.Xauthority:/tmp/.docker.xauth
-    command: [ "bash", "-c", "chmod +x /opt/start.sh && /opt/start.sh" ]

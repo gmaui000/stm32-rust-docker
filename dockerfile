@@ -38,6 +38,7 @@ RUN cargo install cargo-binutils \
     && cargo install flip-link \
     && cargo install probe-rs-tools --locked \
     && cargo install cargo-generate \
+    && cargo install cargo-bloat \
     && rustup component add llvm-tools-preview \
     && rustup component add rust-analyzer \
     && rustup component add rust-src \

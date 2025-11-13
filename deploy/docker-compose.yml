@@ -2,6 +2,7 @@ services:
   stm32builder:
     image: crpi-6ty60rr45g7d9i1q.cn-shanghai.personal.cr.aliyuncs.com/voyance/stm32builder
     container_name: stm32builder
+    user: stm32er
     stdin_open: true
     tty: true
     environment:
@@ -11,7 +12,7 @@ services:
     devices:
       - /dev/video0:/dev/video0
       - /dev/dri:/dev/dri
-      - /dev/stlinkv2_2:/dev/stlinkv2_2
+      - /dev/stlinkv2_4:/dev/stlinkv2_4
       - /dev/bus/usb:/dev/bus/usb
     volumes:
       - ../src:/workspace/
